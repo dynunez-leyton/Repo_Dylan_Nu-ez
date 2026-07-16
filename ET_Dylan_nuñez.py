@@ -34,3 +34,11 @@ def busqueda_precio(p_min, p_max, productos, stock):
         print(f"Los productos encontrados son: {resultados}")
     else:
         print("No hay productos en ese rango de precios.")
+
+
+def buscar_codigo(codigo, diccionario):
+    codigo = codigo.upper()
+    for clave in diccionario:
+        if clave.upper() == codigo:
+            return True
+    return False
