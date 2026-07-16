@@ -42,3 +42,25 @@ def buscar_codigo(codigo, diccionario):
         if clave.upper() == codigo:
             return True
     return False
+
+
+def actualizar_precio(codigo, nuevo_precio, stock):
+    if buscar_codigo(codigo, stock):
+        for clave in stock:
+            if clave.upper() == codigo.upper():
+                stock[clave][0] = nuevo_precio
+                return True
+    return False
+
+
+def eliminar_producto(codigo, productos, stock):
+    if buscar_codigo(codigo, stock):
+        clave_real = None
+        for clave in stock:
+            if clave.upper() == codigo.upper():
+                clave_real = clave
+                break
+        del stock[clave_real]
+        del productos[clave_real]
+        return True
+    return FalseSS
