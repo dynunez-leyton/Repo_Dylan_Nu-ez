@@ -63,4 +63,38 @@ def eliminar_producto(codigo, productos, stock):
         del stock[clave_real]
         del productos[clave_real]
         return True
-    return FalseSS
+    return False
+
+
+def validar_texto(texto):
+    if texto.strip() == "":
+        return False
+    return True
+
+
+def validar_numero_positivo(valor):
+    try:
+        numero = float(valor)
+    except ValueError:
+        return False
+    return numero > 0
+
+
+def validar_precio(valor):
+    try:
+        numero = int(valor)
+    except ValueError:
+        return False
+    return numero > 0
+
+
+def validar_unidades(valor):
+    try:
+        numero = int(valor)
+    except ValueError:
+        return False
+    return numero >= 0
+
+
+def validar_sn(valor):
+    return valor.lower() in ("s", "n")S
