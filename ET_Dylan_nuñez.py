@@ -97,4 +97,13 @@ def validar_unidades(valor):
 
 
 def validar_sn(valor):
-    return valor.lower() in ("s", "n")S
+    return valor.lower() in ("s", "n")
+
+
+def agregar_producto(codigo, nombre, categoria, marca, peso_kg, es_importado,
+                      es_para_cachorro, precio, unidades, productos, stock):
+    if buscar_codigo(codigo, productos):
+        return False
+    productos[codigo] = [nombre, categoria, marca, peso_kg, es_importado, es_para_cachorro]
+    stock[codigo] = [precio, unidades]
+    return True
