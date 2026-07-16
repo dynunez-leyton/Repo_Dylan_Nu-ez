@@ -214,6 +214,17 @@ def main():
                 else:
                     print("El código ya existe")
 
+        elif opcion == 5:
+            codigo = input("Ingrese código del producto: ")
+            if eliminar_producto(codigo, productos, stock):
+                print("Producto eliminado")
+            else:
+                print("El código no existe")
+
+        elif opcion == 6:
+            print("Programa finalizado.")
+            break
+
 
 if __name__ == "__main__":
     main()
