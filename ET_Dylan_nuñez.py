@@ -19,3 +19,18 @@ def unidades_categoria(categoria, productos, stock):
             if codigo in stock:
                 total += stock[codigo][1]
     print(f"El total de unidades disponibles es: {total}")
+
+
+def busqueda_precio(p_min, p_max, productos, stock):
+    resultados = []
+    for codigo, datos in stock.items():
+        precio = datos[0]
+        unidades = datos[1]
+        if p_min <= precio <= p_max and unidades != 0:
+            nombre = productos[codigo][0]
+            resultados.append(f"{nombre}--{codigo}")
+    if resultados:
+        resultados.sort()
+        print(f"Los productos encontrados son: {resultados}")
+    else:
+        print("No hay productos en ese rango de precios.")
