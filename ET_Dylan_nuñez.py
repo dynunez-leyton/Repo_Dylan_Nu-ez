@@ -107,3 +107,42 @@ def agregar_producto(codigo, nombre, categoria, marca, peso_kg, es_importado,
     productos[codigo] = [nombre, categoria, marca, peso_kg, es_importado, es_para_cachorro]
     stock[codigo] = [precio, unidades]
     return True
+
+
+def main():
+    productos = {}
+    stock = {}
+
+    while True:
+        print("========== MENÚ PRINCIPAL ==========")
+        print("1. Unidades por categoría")
+        print("2. Búsqueda de productos por rango de precio")
+        print("3. Actualizar precio de producto")
+        print("4. Agregar producto")
+        print("5. Eliminar producto")
+        print("6. Salir")
+        print("=====================================")
+
+        opcion = leer_opcion()
+
+        if opcion == 1:
+            categoria = input("Ingrese categoría a consultar: ")
+            unidades_categoria(categoria, productos, stock)
+
+        elif opcion == 2:
+            while True:
+                try:
+                    p_min = int(input("Ingrese precio mínimo: "))
+                    p_max = int(input("Ingrese precio máximo: "))
+                except ValueError:
+                    print("Debe ingresar valores enteros")
+                    continue
+                if p_min < 0 or p_max < 0 or p_min > p_max:
+                    print("Debe ingresar valores enteros")
+                    continue
+                break
+            busqueda_precio(p_min, p_max, productos, stock)
+
+
+if __name__ == "__main__":
+    main()
