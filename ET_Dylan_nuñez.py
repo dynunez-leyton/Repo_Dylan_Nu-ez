@@ -162,6 +162,58 @@ def main():
                     print("El código no existe")
                 seguir = input("¿Desea actualizar otro precio (s/n)?: ").lower()
 
+        elif opcion == 4:
+            codigo = input("Ingrese código del producto: ")
+            nombre = input("Ingrese nombre: ")
+            categoria = input("Ingrese categoría: ")
+            marca = input("Ingrese marca: ")
+            peso_kg = input("Ingrese peso (kg): ")
+            es_importado = input("¿Es importado? (s/n): ")
+            es_para_cachorro = input("¿Es para cachorro? (s/n): ")
+            precio = input("Ingrese precio: ")
+            unidades = input("Ingrese unidades: ")
+
+            valido = True
+            if not validar_texto(codigo) or buscar_codigo(codigo, productos):
+                print("El código no es válido o ya existe")
+                valido = False
+            if not validar_texto(nombre):
+                print("El nombre no es válido")
+                valido = False
+            if not validar_texto(categoria):
+                print("La categoría no es válida")
+                valido = False
+            if not validar_texto(marca):
+                print("La marca no es válida")
+                valido = False
+            if not validar_numero_positivo(peso_kg):
+                print("El peso no es válido")
+                valido = False
+            if not validar_sn(es_importado):
+                print("El valor de importado no es válido")
+                valido = False
+            if not validar_sn(es_para_cachorro):
+                print("El valor de para cachorro no es válido")
+                valido = False
+            if not validar_precio(precio):
+                print("El precio no es válido")
+                valido = False
+            if not validar_unidades(unidades):
+                print("Las unidades no son válidas")
+                valido = False
+
+            if valido:
+                peso_kg = float(peso_kg)
+                precio = int(precio)
+                unidades = int(unidades)
+                es_importado = True if es_importado.lower() == "s" else False
+                es_para_cachorro = True if es_para_cachorro.lower() == "s" else False
+                if agregar_producto(codigo, nombre, categoria, marca, peso_kg, es_importado,
+                                     es_para_cachorro, precio, unidades, productos, stock):
+                    print("Producto agregado")
+                else:
+                    print("El código ya existe")
+
 
 if __name__ == "__main__":
     main()
