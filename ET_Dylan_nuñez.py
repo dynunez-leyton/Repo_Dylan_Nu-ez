@@ -143,6 +143,25 @@ def main():
                 break
             busqueda_precio(p_min, p_max, productos, stock)
 
+        elif opcion == 3:
+            seguir = "s"
+            while seguir == "s":
+                codigo = input("Ingrese código del producto: ")
+                nuevo_precio = input("Ingrese nuevo precio: ")
+                try:
+                    nuevo_precio = int(nuevo_precio)
+                    if nuevo_precio <= 0:
+                        raise ValueError
+                except ValueError:
+                    print("Debe ingresar un valor entero positivo")
+                    seguir = input("¿Desea actualizar otro precio (s/n)?: ").lower()
+                    continue
+                if actualizar_precio(codigo, nuevo_precio, stock):
+                    print("Precio actualizado")
+                else:
+                    print("El código no existe")
+                seguir = input("¿Desea actualizar otro precio (s/n)?: ").lower()
+
 
 if __name__ == "__main__":
     main()
